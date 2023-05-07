@@ -3,23 +3,43 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "infisical run -- next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@tanstack/react-query": "^4.29.5",
     "@types/node": "20.1.0",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
+    "bigint-conversion": "^2.4.1",
+    "cva": "npm:class-variance-authority@^0.6.0",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
+    "jose": "^4.14.4",
+    "jsrp": "^0.2.4",
+    "mongoose": "^7.1.0",
+    "nanoid": "^4.0.2",
     "next": "13.4.1",
     "postcss": "8.4.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.43.9",
+    "stripe": "^12.4.0",
+    "tailwind-merge": "^1.12.0",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^4.29.4",
+    "@types/jsrp": "^0.2.4"
   }
 }
