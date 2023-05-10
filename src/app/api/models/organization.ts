@@ -1,4 +1,5 @@
-import { Schema, model, models, Types } from 'mongoose';
+import { Schema, Types } from 'mongoose';
+import { mainDBConnection } from '@/app/api/utils';
 
 export interface IOrganization {
 	_id: Types.ObjectId;
@@ -21,4 +22,4 @@ const organizationSchema = new Schema<IOrganization>(
 	}
 );
 
-export const Organization = models.Organization || model<IOrganization>('Organization', organizationSchema);
+export const Organization = mainDBConnection?.models?.Organization || mainDBConnection?.model<IOrganization>('Organization', organizationSchema);

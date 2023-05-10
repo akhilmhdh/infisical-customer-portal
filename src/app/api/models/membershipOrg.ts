@@ -1,5 +1,6 @@
-import { Schema, model, models, Types, Document } from 'mongoose';
-import { OWNER, ADMIN, MEMBER, INVITED, ACCEPTED } from '../../../../config';
+import { Schema, Types, Document } from 'mongoose';
+import { OWNER, ADMIN, MEMBER, INVITED, ACCEPTED } from '@/app/api/config';
+import { mainDBConnection } from '@/app/api/utils';
 
 export interface IMembershipOrg extends Document {
 	_id: Types.ObjectId;
@@ -39,7 +40,4 @@ const membershipOrgSchema = new Schema(
 	}
 );
 
-export const MembershipOrg = models.MembershipOrg || model<IMembershipOrg>(
-	'MembershipOrg',
-	membershipOrgSchema
-);
+export const MembershipOrg = mainDBConnection?.models?.MembershipOrg || mainDBConnection?.model<IMembershipOrg>('MembershipOrg', membershipOrgSchema);

@@ -1,4 +1,5 @@
-import { Schema, model, models, Types, Document } from 'mongoose';
+import { Schema, Types, Document } from 'mongoose';
+import { mainDBConnection } from '@/app/api/utils';
 
 export interface IUser extends Document {
 	_id: Types.ObjectId;
@@ -102,4 +103,4 @@ const userSchema = new Schema<IUser>(
 	}
 );
 
-export const User = models.User || model<IUser>('User', userSchema);
+export const User = mainDBConnection?.models?.User || mainDBConnection?.model<IUser>('User', userSchema);

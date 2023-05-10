@@ -1,11 +1,13 @@
 import { NextResponse } from 'next/server';
 import jsrp from 'jsrp';
+import { dbConnect } from '@/app/api/utils';
 import {
-    connectMongo,
     User,
     LoginSRPDetail
-} from '../../../db';
-import { jsonResponse, setUserCookie } from '@/utils';
+} from '@/app/api/models'; 
+import { jsonResponse } from '@/app/api/utils';
+import { setUserCookie } from '@/app/api/helpers';
+import { DB_MAIN, MONGO_MAIN_DB_URI } from '@/app/api/config';
 
 export async function POST(request: Request) {
     try {
@@ -17,11 +19,11 @@ export async function POST(request: Request) {
             clientProof: string;
         } = await request.json();
 
-        await connectMongo();
+        await dbConnect(DB_MAIN);
     
         const user = await User.findOne({
           email
-        }).select('+salt +verifier +encryptionVersion +protectedKey +protectedKeyIV +protectedKeyTag +publicKey +encryptedPrivateKey +iv +tag');
+        }).select('+salt +verifier');
     
         if (!user) throw new Error('Failed to find user');
     
@@ -52,8 +54,6 @@ export async function POST(request: Request) {
                     // TODO: handle MFA case
                 }
                 
-                // note: don't need to send all the crypto stuff bc this is just
-                // the license server
                 resolve({
                     mfaEnabled: false,
                     userId: user._id.toString()

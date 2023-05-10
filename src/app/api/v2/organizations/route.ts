@@ -1,17 +1,19 @@
 import { Types } from 'mongoose';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
+import { dbConnect, jsonResponse } from '@/app/api/utils';
 import {
     MembershipOrg,
     Organization
-} from '../../db';
-import { jsonResponse } from '@/utils';
-import { OWNER } from '../../../../config';
+} from '@/app/api/models';
+import { OWNER, MONGO_MAIN_DB_URI, DB_MAIN } from '@/app/api/config';
 
 export async function GET(request: NextRequest) {
     try {
         const userId = request.headers.get('userId');
         
         if (!userId) return jsonResponse(500, { error: { message: 'Authentication failed.' } });
+
+        await dbConnect(DB_MAIN);
 
         const organizationIds = await MembershipOrg.distinct('organization', {
             user: new Types.ObjectId(userId),

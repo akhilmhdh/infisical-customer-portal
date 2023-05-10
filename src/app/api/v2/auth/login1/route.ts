@@ -2,19 +2,16 @@ import { NextResponse } from 'next/server';
 import mongoose from 'mongoose';
 const jsrp = require('jsrp');
 import * as bigintConversion from 'bigint-conversion'
-import { 
-    connectMongo, 
-    User,
-    LoginSRPDetail
-} from '../../../db';
-import { jsonResponse } from '@/utils';
-
-// TODO: resolve error-handling
-// TODO: clean
+import { dbConnect, jsonResponse } from '@/app/api/utils';
+import {
+  User,
+  LoginSRPDetail
+} from '@/app/api/models';
+import { DB_MAIN } from '@/app/api/config';
 
 export async function POST(request: Request) {
     try {
-        await connectMongo();
+        await dbConnect(DB_MAIN);
 
         const { 
             email, 

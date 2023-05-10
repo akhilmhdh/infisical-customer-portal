@@ -1,4 +1,5 @@
-import { Schema, model, models, Types } from 'mongoose';
+import { Schema, Types } from 'mongoose';
+import { mainDBConnection } from '@/app/api/utils';
 
 export interface ILoginSRPDetail {
 	_id: Types.ObjectId;
@@ -24,6 +25,4 @@ const loginSRPDetailSchema = new Schema<ILoginSRPDetail>(
 	}
 );
 
-export const LoginSRPDetail = models.LoginSRPDetail || model<ILoginSRPDetail>('LoginSRPDetail', loginSRPDetailSchema);
-
-export default LoginSRPDetail;
+export const LoginSRPDetail = mainDBConnection?.models?.LoginSRPDetail || mainDBConnection?.model<ILoginSRPDetail>('LoginSRPDetail', loginSRPDetailSchema);

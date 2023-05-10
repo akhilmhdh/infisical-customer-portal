@@ -11,7 +11,7 @@ import { Input } from '@/components';
 import {
     setAuthToken,
     apiRequest
-} from '../../../config';
+} from '../../config';
 
 import axios from 'axios';
 
@@ -39,21 +39,15 @@ export function LoginForm() {
             },
             async () => {
                 const clientPublicKey = client.getPublicKey();
-                console.log('clientPublickey: ', clientPublicKey);
 
                 const { data: { salt, serverPublicKey } } = await apiRequest.post('/api/v2/auth/login1', {
                     email,
                     clientPublicKey
                 });
                 
-                console.log('A');
                 client.setSalt(salt);
-                console.log('B');
                 client.setServerPublicKey(serverPublicKey);
-                console.log('C');
                 const clientProof = client.getProof(); // called M1
-                
-                console.log('clientProof: ', clientProof);
 
                 const { 
                     data: {

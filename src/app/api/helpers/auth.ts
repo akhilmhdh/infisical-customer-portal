@@ -1,7 +1,38 @@
+import { Types } from 'mongoose';
 import type { NextRequest, NextResponse } from 'next/server'
 import { nanoid } from 'nanoid'
 import { SignJWT, jwtVerify } from 'jose'
-import { USER_TOKEN, JWT_SECRET } from '../config';
+import {
+    MembershipOrg,
+    Organization
+} from '@/app/api/models';
+import { 
+  USER_TOKEN, 
+  JWT_SECRET,
+  OWNER
+} from '@/app/api/config';
+
+/**
+ * Verifies that the user with id [userId] is authorized for the organization
+ * with id [organizationId]
+ * @param userId - id of user to validate
+ * @param organizationId - id of organization to validate against
+ */
+export async function verifyOrgAuth(userId: string, organizationId: string) {
+  const membershipOrg = await MembershipOrg.findOne({
+      user: new Types.ObjectId(userId!),
+      organization: new Types.ObjectId(organizationId),
+      role: OWNER
+  }).select('organization');
+
+  if (!membershipOrg) throw Error();
+  
+  const organization = await Organization.findById(membershipOrg.organization);
+
+  if (!organization) throw Error();
+
+  return { organization };
+}
 
 interface UserJwtPayload {
   jti: string
@@ -52,7 +83,7 @@ export async function setUserCookie(res: NextResponse, userId: string) {
 /**
  * Expires the user token cookie
  */
-export function expireUserCookie(res: NextResponse) {
+export async function expireUserCookie(res: NextResponse) {
   res.cookies.set(USER_TOKEN, '', { httpOnly: true, maxAge: 0 })
   return res
 }
