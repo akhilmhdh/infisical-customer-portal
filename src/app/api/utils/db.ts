@@ -1,6 +1,5 @@
 import mongoose, { Connection } from 'mongoose';
 import { MONGO_MAIN_DB_URI, MONGO_LICENSE_DB_URI, DB_MAIN, DB_LICENSE } from '@/app/api/config';
-import { userModel } from '@/app/api/models';
 
 if (!MONGO_MAIN_DB_URI || !MONGO_LICENSE_DB_URI) {
   throw new Error(
