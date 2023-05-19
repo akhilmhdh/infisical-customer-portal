@@ -5,13 +5,18 @@ export const USER_TOKEN = 'user-token';
 
 export const MONGO_MAIN_DB_URI = process.env.MONGO_MAIN_DB_URI!;
 export const MONGO_LICENSE_DB_URI = process.env.MONGO_LICENSE_DB_URI!;
-export const MONGO_URL = process.env.MONGO_URL!; // deprecated
 
-export const JWT_SECRET = process.env.JWT_SECRET;
+export const JWT_SECRET = process.env.JWT_SECRET!;
 export const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY!;
 
+// stripe
 export const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
 export const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET;
+export const STRIPE_PRODUCT_STARTER = process.env.STRIPE_PRODUCT_STARTER!;
+export const STRIPE_PRODUCT_TEAM = process.env.STRIPE_PRODUCT_TEAM!;
+export const STRIPE_PRODUCT_TEAM_ANNUAL = process.env.STRIPE_PRODUCT_TEAM_ANNUAL!;
+export const STRIPE_PRODUCT_PRO = process.env.STRIPE_PRODUCT_PRO!;
+export const STRIPE_PRODUCT_PRO_ANNUAL = process.env.STRIPE_PRODUCT_PRO_ANNUAL!;
 
 export const SMTP_HOST = process.env.SMTP_HOST!;
 export const SMTP_USERNAME = process.env.SMTP_USERNAME!;

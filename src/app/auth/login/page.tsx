@@ -1,12 +1,10 @@
 "use client"
 import { LoginForm } from '../_components';
 
-// TODO: perform authentication
-// TODO: style component
-// TODO: add MFA support
-
 export default function LoginPage() {
     return (
-        <LoginForm />
+        <div className="bg-gradient-to-r from-midnight to-midnight-dark flex h-screen items-center justify-center">
+            <LoginForm />
+        </div>
     );
 }

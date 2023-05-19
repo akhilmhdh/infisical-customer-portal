@@ -1,2 +1,5 @@
 export * from './constants';
-export * from './subscriptionFeatureMap';
+export * from './productFeatureMap';
+export * from './productFeatureTable';
+// export * from './currentProductFeatureTable';
+

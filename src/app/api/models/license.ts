@@ -4,12 +4,15 @@ import { licenseDBConnection } from '@/app/api/utils';
 export interface ILicense extends Document {
     _id: Types.ObjectId;
     customerId: string;
-    subscriptionId: string;
     price: string;
+    product: string;
+    seats: number;
     prefix: string;
     encryptedLicenseKey: string;
     iv: string;
     isActivated: boolean;
+    updatedAt: Date;
+    createdAt: Date;
 }
 
 const licenseSchema = new Schema<ILicense>(
@@ -18,12 +21,16 @@ const licenseSchema = new Schema<ILicense>(
             type: String,
             required: true
         },
-        subscriptionId: {
+        price: {
             type: String,
             required: true
         },
-        price: {
+        product: {
             type: String,
+            required: true
+        },
+        seats: {
+            type: Number,
             required: true
         },
         prefix: {

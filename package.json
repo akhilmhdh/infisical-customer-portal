@@ -11,11 +11,14 @@
     "preview-email": "email dev"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.4.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@headlessui/react": "^1.7.14",
+    "@hookform/resolvers": "^3.1.0",
     "@tanstack/react-query": "^4.29.5",
     "@types/node": "20.1.0",
     "@types/react": "18.2.6",
@@ -27,6 +30,7 @@
     "cva": "npm:class-variance-authority@^0.6.0",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
+    "handlebars": "^4.7.7",
     "jose": "^4.14.4",
     "jsrp": "^0.2.4",
     "micro": "^10.0.1",
@@ -38,10 +42,12 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.9",
+    "react-spinners": "^0.13.8",
     "stripe": "^12.4.0",
     "tailwind-merge": "^1.12.0",
     "tailwindcss": "3.3.2",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "yup": "^1.1.1"
   },
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^4.29.4",

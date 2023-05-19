@@ -6,7 +6,6 @@ export default function Layout ({
 }) {
     return (
         <section>
-            <div>Hello there</div>
             {children}
         </section>
     );

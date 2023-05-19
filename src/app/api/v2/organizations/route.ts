@@ -5,7 +5,7 @@ import {
     MembershipOrg,
     Organization
 } from '@/app/api/models';
-import { OWNER, MONGO_MAIN_DB_URI, DB_MAIN } from '@/app/api/config';
+import { OWNER, DB_MAIN } from '@/app/api/config';
 
 export async function GET(request: NextRequest) {
     try {
