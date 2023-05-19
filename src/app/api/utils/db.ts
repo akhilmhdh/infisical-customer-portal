@@ -1,5 +1,6 @@
 import mongoose, { Connection } from 'mongoose';
 import { MONGO_MAIN_DB_URI, MONGO_LICENSE_DB_URI, DB_MAIN, DB_LICENSE } from '@/app/api/config';
+import { userModel } from '@/app/api/models';
 
 if (!MONGO_MAIN_DB_URI || !MONGO_LICENSE_DB_URI) {
   throw new Error(
@@ -16,7 +17,7 @@ if (!cachedDBs) {
   };
 }
 
-export function dbConnect(dbName: string): Connection {
+export function dbConnect(dbName: string): Promise<Connection> {
   if (!dbName || (dbName !== 'main' && dbName !== 'license')) {
     throw new Error('Please provide a valid dbName (either "main" or "license")');
   }

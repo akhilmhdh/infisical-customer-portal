@@ -40,15 +40,13 @@ interface UserJwtPayload {
   userId: string;
 }
 
-export class AuthError extends Error {}
-
 /**
  * Verifies the user's JWT token and returns its payload if it's valid.
  */
 export async function verifyAuth(req: NextRequest) {
   const token = req.cookies.get(USER_TOKEN)?.value
 
-  if (!token) throw new AuthError('Missing user token')
+  if (!token) throw new Error('Missing user token')
 
   try {
     const verified = await jwtVerify(
@@ -57,7 +55,7 @@ export async function verifyAuth(req: NextRequest) {
     )
     return verified.payload as unknown as UserJwtPayload;
   } catch (err) {
-    throw new AuthError('Your token has expired.')
+    throw new Error('Your token has expired.')
   }
 }
 
